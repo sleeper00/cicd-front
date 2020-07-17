@@ -76,10 +76,20 @@ containerTemplate(name: 'kubectl', image: 'roffe/kubectl', command: 'cat', ttyEn
       } } 
 
 		// Slack - 빌드 성공시
+		notifySlack("STARTED", "#0000FF") 
+		
+    def notifySlack(STATUS, COLOR) {
+      slackSend channel: 'jemkins-alarm-test', 
+      message: STATUS+" : " + "${env.JOB_NAME}[${env.BUILD_NUMBER}] (${env.BUILD_URL})", 
+      color: COLOR, tokenCredentialId: 'slack-lab03', 
+      teamDomain: 'ibm-teck' 
+    }
 
+    notifySlack("SUCCESS", "#00FF00")
 
 	} catch(e) {
 		// Slack - 빌드 실패시
+		notifySlack("FAILED", "#FF0000") 
 	}
  }
 }
