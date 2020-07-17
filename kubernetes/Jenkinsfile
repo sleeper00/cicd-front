@@ -17,7 +17,7 @@ containerTemplate(name: 'kubectl', image: 'roffe/kubectl', command: 'cat', ttyEn
 
 		// #1 Github 소스 가져오기
     stage('Get Source') {
-     git credentialsId: 'github-lab03', url: 'https://github.com/ibm-cloudacademy/cicd-front', branch: 'master' 
+     git credentialsId: 'github-lab03', url: 'https://github.com/sleeper00/cicd-front', branch: 'master' 
     }
 
 		// #2 Properties 파일 읽기
